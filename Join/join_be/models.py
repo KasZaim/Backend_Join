@@ -1,18 +1,19 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class Users(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    initials = models.CharField(max_length=2)
-    color = models.CharField(max_length=50)
+# class Users(models.Model):
+#     name = models.CharField(max_length=50)
+#     email = models.CharField(max_length=50)
+#     password = models.CharField(max_length=50)
+#     initials = models.CharField(max_length=2)
+#     color = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 class Contacts(models.Model):
-    user = models.ForeignKey(Users, related_name='contacts', on_delete=models.CASCADE, null=True, blank=False)
+    user = models.ForeignKey(User, related_name='contacts', on_delete=models.CASCADE, null=True, blank=False)
     firstname = models.CharField(max_length=50)
     lastname = models.CharField(max_length=100, blank=True )
     mail = models.CharField(max_length=50)

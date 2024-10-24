@@ -3,14 +3,15 @@ from user_auth_app.models import UserProfile
 from .serializers import UserProfileSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
-from .serializers import RegistrationSerializer
+from .serializers import RegistrationSerializer,UserSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
+from django.contrib.auth.models import User
 
 class UserProfileList(generics.ListCreateAPIView):
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = UserProfile.objects.all()
