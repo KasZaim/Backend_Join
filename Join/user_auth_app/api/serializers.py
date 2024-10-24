@@ -9,12 +9,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields =['initials', 'color']
         
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     profile = UserProfileSerializer(source='userprofile', read_only=True)
-    
+    url = serializers.HyperlinkedIdentityField(view_name='user-detail', lookup_field='pk')
     class Meta:
         model = User
-        fields = ['username', 'email','first_name', 'last_name', 'profile']
+        fields = ['username', 'email','first_name', 'last_name', 'profile', 'url']
 
         
         

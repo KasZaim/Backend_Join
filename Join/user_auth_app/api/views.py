@@ -14,8 +14,8 @@ class UserProfileList(generics.ListCreateAPIView):
     serializer_class = UserSerializer
 
 class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class RegistrationView(APIView):
     permission_classes = [AllowAny]
