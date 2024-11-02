@@ -8,6 +8,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.contrib.auth.models import User
+from rest_framework import status
 
 class UserProfileList(generics.ListCreateAPIView):
     queryset = User.objects.all()
@@ -40,6 +41,7 @@ class RegistrationView(APIView):
 class CustomLoginView(APIView):
     permission_classes = [AllowAny]
     serializer_class = AuthTokenSerializer
+    
     def post(self, request):
         serializer = self.serializer_class(data = request.data)
         data = {}
@@ -52,7 +54,40 @@ class CustomLoginView(APIView):
                 'username': user.username,
                 'email': user.email
             }
+            return Response(data, status=status.HTTP_200_OK)
         else:
-            data=serializer.errors
+            return Response(
+                {"error": "Email or Password are invalid"},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
             
-        return Response(data)
+        # def post(self, request):
+        # email = request.data.get('email')
+        # password = request.data.get('password')
+
+        # # Überprüfen, ob die E-Mail im System existiert
+        # try:
+        #     user = User.objects.get(email=email)
+        # except User.DoesNotExist:
+        #     return Response(
+        #         {"error": "This email is not registered."},
+        #         status=status.HTTP_400_BAD_REQUEST
+        #     )
+
+        # # Benutzer authentifizieren
+        # user = authenticate(username=user.username, password=password)
+
+        # if user is not None:
+        #     token, created = Token.objects.get_or_create(user=user)
+        #     data = {
+        #         'token': token.key,
+        #         'username': user.username,
+        #         'email': user.email
+        #     }
+        #     return Response(data, status=status.HTTP_200_OK)
+        # else:
+        #     # Passwort ist falsch
+        #     return Response(
+        #         {"error": "The password is incorrect."},
+        #         status=status.HTTP_401_UNAUTHORIZED
+        #     )

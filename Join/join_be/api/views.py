@@ -4,6 +4,7 @@ from rest_framework import mixins, generics, viewsets
 from rest_framework.decorators import action
 from join_be.models import Contacts,Tasks
 from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticated
 
 class UserViewSet(viewsets.ModelViewSet): #ModelViewSet
     queryset = User.objects.all()
@@ -19,7 +20,13 @@ class UserViewSet(viewsets.ModelViewSet): #ModelViewSet
 class ContactsViewSet(viewsets.ModelViewSet): #ModelViewSet
     queryset = Contacts.objects.all()
     serializer_class = ContactsSerializer
-
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        # Nur Kontakte des angemeldeten Benutzers abrufen
+        user = self.request.user
+        return Contacts.objects.filter(user=user)
+    
 class TasksViewSet(viewsets.ModelViewSet): #ModelViewSet
     queryset = Tasks.objects.all()
     serializer_class = TasksSerializer

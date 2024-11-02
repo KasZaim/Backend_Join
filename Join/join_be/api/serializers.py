@@ -9,6 +9,14 @@ class ContactsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contacts
         fields = ['id', 'firstname','lastname', 'mail', 'phone', 'initials', 'color','contact_link']
+        extra_kwargs = {
+            'user': {'read_only': True}  # Das Feld `user` ist schreibgeschützt und wird automatisch gesetzt
+        }
+
+    def create(self, validated_data):
+        user = self.context['request'].user
+        validated_data['user'] = user
+        return super().create(validated_data)
     
     def get_contact_link(self, obj):
         request = self.context.get('request')
@@ -16,10 +24,11 @@ class ContactsSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile = UserProfileSerializer(required=True)
+    profile = UserProfileSerializer(source='userprofile', read_only=True)
+    password = serializers.CharField(write_only=True)
     class Meta:
-        model = User
-        fields = '__all__'
+       model = User
+       fields = ['id', 'username', 'email', 'first_name', 'last_name', 'profile','password']
 
 
 class TasksSerializer(serializers.ModelSerializer):
