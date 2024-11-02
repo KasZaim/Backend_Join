@@ -19,7 +19,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         
         
 class RegistrationSerializer(serializers.ModelSerializer):
-    # repeated_password = serializers.CharField(write_only=True)
     profile = UserProfileSerializer(required=True)
     class Meta:
         model = User

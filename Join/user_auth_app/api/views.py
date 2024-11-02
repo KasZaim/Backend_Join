@@ -52,7 +52,9 @@ class CustomLoginView(APIView):
             data = {
                 'token': token.key,
                 'username': user.username,
-                'email': user.email
+                'email': user.email,
+                'first_name': user.first_name,
+                'last_name': user.last_name
             }
             return Response(data, status=status.HTTP_200_OK)
         else:
@@ -61,33 +63,3 @@ class CustomLoginView(APIView):
                 status=status.HTTP_401_UNAUTHORIZED
             )
             
-        # def post(self, request):
-        # email = request.data.get('email')
-        # password = request.data.get('password')
-
-        # # Überprüfen, ob die E-Mail im System existiert
-        # try:
-        #     user = User.objects.get(email=email)
-        # except User.DoesNotExist:
-        #     return Response(
-        #         {"error": "This email is not registered."},
-        #         status=status.HTTP_400_BAD_REQUEST
-        #     )
-
-        # # Benutzer authentifizieren
-        # user = authenticate(username=user.username, password=password)
-
-        # if user is not None:
-        #     token, created = Token.objects.get_or_create(user=user)
-        #     data = {
-        #         'token': token.key,
-        #         'username': user.username,
-        #         'email': user.email
-        #     }
-        #     return Response(data, status=status.HTTP_200_OK)
-        # else:
-        #     # Passwort ist falsch
-        #     return Response(
-        #         {"error": "The password is incorrect."},
-        #         status=status.HTTP_401_UNAUTHORIZED
-        #     )
