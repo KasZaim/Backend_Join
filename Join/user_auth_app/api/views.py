@@ -63,3 +63,17 @@ class CustomLoginView(APIView):
                 status=status.HTTP_401_UNAUTHORIZED
             )
             
+class GuestLoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        try:
+            guest_user = User.objects.get(username="guest_user")
+        except User.DoesNotExist:
+            guest_user = User.objects.create_user(username="guest_user", password="guest_password")
+        
+        token, created = Token.objects.get_or_create(user=guest_user)
+        return Response({
+            'token': token.key,
+            'username': guest_user.username
+        }, status=status.HTTP_200_OK)
