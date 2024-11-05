@@ -31,8 +31,8 @@ JoinProject is a web-based task management application built with Django (API/ba
    or
   venv\Scripts\activate     # For Windows
   
-3. Install dependencies
-   pip install -r requirements.txt
+3.Install dependencies
+  pip install -r requirements.txt
 
 4.Run migrations and create a Superuser
  cd backend
@@ -49,9 +49,13 @@ Start the live server (e.g., using a local development environment like VS Code)
 Usage
 
 Admin Panel: Access at http://127.0.0.1:8000/admin/ with your superuser account.
+
 API Endpoints:
+
 GET /api/tasks/ – Retrieve all tasks
+
 POST /api/tasks/ – Create a new task
+
 GET /api/contacts/ – Retrieve all contacts
 
 Technologies
