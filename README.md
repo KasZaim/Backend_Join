@@ -21,7 +21,7 @@ JoinProject is a web-based task management application built with Django (API/ba
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/joinproject.git
+   git clone https://github.com/KasZaim/Join-Frontend.git
    cd joinproject
   
 2.Create and activate a virtual environment:  
