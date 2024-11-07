@@ -19,40 +19,50 @@ JoinProject is a web-based task management application built with Django (API/ba
 
 ### Setup Instructions
 
-1. **Clone the repository:**
+1. **Clone this repository (Backend) :**
    ```bash
-   git clone https://github.com/yourusername/joinproject.git
-   cd joinproject
+   git clone https://github.com/KasZaim/Backend_Join.git
+   cd Backend_Join
   
-2.Create and activate a virtual environment:  
-  bash
-  python -m venv venv
-  source venv/bin/activate  # For Linux/Mac
-   or
-  venv\Scripts\activate     # For Windows
+**2.Create and activate a virtual environment:**  
+  `cd Join`
   
-3. Install dependencies
-   pip install -r requirements.txt
+  `python -m venv venv`
+  
+  `source venv/bin/activate`  # For Linux/Mac
+  
+  `venv\Scripts\activate`     # For Windows
+  
+**3.Install dependencies:**
 
-4.Run migrations and create a Superuser
- cd backend
- python manage.py migrate
- python manage.py createsuperuser  # Optional: create a superuser for the admin panel
- python manage.py runserver
+  `pip install -r requirements.txt`
 
-5.Set up the frontend:
+**4.Run migrations and create a Superuser:**
+ 
+ `python manage.py migrate`
+ 
+ `python manage.py createsuperuser`  # Optional: create a superuser for the admin panel
+ 
+ `python manage.py runserver`
 
-Navigate to the frontend project and start the live server:
-Link to frontend repository: https://github.com/KasZaim/Join-Frontend.git
-Start the live server (e.g., using a local development environment like VS Code)
+**5.Set up the frontend:**
+-Clone the Frontend from the Repository `https://github.com/KasZaim/Join-Frontend.git`
 
-Usage
+-Navigate to the frontend project and start the live server:
+
+-Start the live server (e.g., using a local development environment like VS Code)
+
+### Usage
 
 Admin Panel: Access at http://127.0.0.1:8000/admin/ with your superuser account.
-API Endpoints:
-GET /api/tasks/ – Retrieve all tasks
-POST /api/tasks/ – Create a new task
-GET /api/contacts/ – Retrieve all contacts
+
+### API Endpoints:
+
+**GET /api/tasks/ – Retrieve all tasks**
+
+**POST /api/tasks/ – Create a new task**
+
+**GET /api/contacts/ – Retrieve all contacts**
 
 Technologies
 
