@@ -1,16 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# class Users(models.Model):
-#     name = models.CharField(max_length=50)
-#     email = models.CharField(max_length=50)
-#     password = models.CharField(max_length=50)
-#     initials = models.CharField(max_length=2)
-#     color = models.CharField(max_length=50)
-
-#     def __str__(self):
-#         return self.name
-
 
 class Contacts(models.Model):
     user = models.ForeignKey(User, related_name='contacts', on_delete=models.CASCADE, null=True, blank=False)
@@ -30,7 +20,7 @@ class Tasks(models.Model):
     topic = models.IntegerField(blank=False, null=True, default=0)
     headline = models.CharField(max_length=50)
     description = models.CharField(max_length=250)
-    clients = models.ManyToManyField(Contacts, related_name="assigned_tasks")
+    clients = models.ManyToManyField(Contacts, related_name="assigned_tasks", blank=True)
     date = models.DateField(null=True, blank=True)
     prio = models.CharField(max_length=50)
     subtasks = models.JSONField(default=list, null=True, blank=True, help_text="status: toDo, inProgress, awaitingFeedback, done")
