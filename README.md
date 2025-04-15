@@ -1,71 +1,87 @@
- JoinProject
+# Join Backend
 
-JoinProject is a web-based task management application built with Django (API/backend) and JavaScript (frontend). It offers core features of a Kanban board for managing tasks and contacts, similar to other task management tools.
+A Django REST Framework backend for the Join project, providing API endpoints for user management, contacts, and tasks.
 
 ## Features
 
-- Users can create, update, and delete tasks.
-- Each task can include details such as priority, category, and due date.
-- Users can add and manage contacts.
-- Responsive design for optimal display on various devices.
+- User authentication and management
+- Contact management system
+- Task management system
+- RESTful API endpoints
+- Secure authentication with Django REST Framework
+
+## Tech Stack
+
+- Python 3.x
+- Django 5.1.1
+- Django REST Framework 3.15.2
+- SQLite (default database)
 
 ## Installation
 
-### Prerequisites
+1. Clone the repository:
+```bash
+git clone [your-repository-url]
+cd Join
+```
 
-- Python 3.x
-- Django 3.x or 4.x
-- Node.js (optional if you want to use additional frontend tools)
+2. Create and activate a virtual environment:
+```bash
+python -m venv env
+source env/bin/activate  # On Windows: env\Scripts\activate
+```
 
-### Setup Instructions
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-1. **Clone this repository (Backend) :**
-   ```bash
-   git clone https://github.com/KasZaim/Backend_Join.git
-   cd Backend_Join
-  
-**2.Create and activate a virtual environment:**  
-  `cd Join`
-  
-  `python -m venv venv`
-  
-  `source venv/bin/activate`  # For Linux/Mac
-  
-  `venv\Scripts\activate`     # For Windows
-  
-**3.Install dependencies:**
+4. Run migrations:
+```bash
+python manage.py migrate
+```
 
-  `pip install -r requirements.txt`
+5. Start the development server:
+```bash
+python manage.py runserver
+```
 
-**4.Run migrations and create a Superuser:**
- 
- `python manage.py migrate`
- 
- `python manage.py createsuperuser`  # Optional: create a superuser for the admin panel
- 
- `python manage.py runserver`
+The API will be available at `http://localhost:8000/`
 
-**5.Set up the frontend:**
--Clone the Frontend from the Repository `https://github.com/KasZaim/Join-Frontend.git`
+## API Endpoints
 
--Navigate to the frontend project and start the live server:
+### Users
+- `GET /api/users/` - List all users
+- `POST /api/users/` - Create a new user
+- `GET /api/users/{id}/` - Get user details
+- `GET /api/users/{id}/contacts/` - Get user's contacts
 
--Start the live server (e.g., using a local development environment like VS Code)
+### Contacts
+- `GET /api/contacts/` - List all contacts (authenticated users only)
+- `POST /api/contacts/` - Create a new contact
+- `GET /api/contacts/{id}/` - Get contact details
+- `PUT /api/contacts/{id}/` - Update contact
+- `DELETE /api/contacts/{id}/` - Delete contact
 
-### Usage
+### Tasks
+- `GET /api/tasks/` - List all tasks
+- `POST /api/tasks/` - Create a new task
+- `GET /api/tasks/{id}/` - Get task details
+- `PUT /api/tasks/{id}/` - Update task
+- `DELETE /api/tasks/{id}/` - Delete task
 
-Admin Panel: Access at http://127.0.0.1:8000/admin/ with your superuser account.
+## Authentication
 
-### API Endpoints:
+The API uses Django REST Framework's authentication system. Most endpoints require authentication using a valid token.
 
-**GET /api/tasks/ – Retrieve all tasks**
+## Contributing
 
-**POST /api/tasks/ – Create a new task**
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-**GET /api/contacts/ – Retrieve all contacts**
+## License
 
-Technologies
-
-Django and Django REST Framework
-JavaScript (frontend)
-SQLite or PostgreSQL for the database
+This project is licensed under the MIT License - see the LICENSE file for details.
